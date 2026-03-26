@@ -13,13 +13,13 @@ app = Flask(__name__)
 # Carga el modelo
 
 # Enruta la landing page (endpoint /)
-@app.route("/", methods= "GET")
+@app.route("/", methods=["GET"])
 def hello(): # Ligado al endopoint "/" o sea el home, con el método GET
     return "Bienvenido a mi API del modelo advertising"
 
 
 # Enruta la funcion al endpoint /api/v1/predict
-@app.route("/api/v1/predict", methods= "GET")
+@app.route("/api/v1/predict", methods=["GET"])
 def predict(): # Ligado al endpoint '/api/v1/predict', con el método GET
     with open('ad_model.pkl', 'rb')as f:
         model = pickle.load(f)
@@ -40,7 +40,7 @@ def predict(): # Ligado al endpoint '/api/v1/predict', con el método GET
     return jsonify(response)
 
 # Enruta la funcion al endpoint /api/v1/retrain
-@app.route("/api/v1/retrain", methods= "GET")
+@app.route("/api/v1/retrain", methods=["GET"])
 def retrain(): # Ligado al endpoint '/api/v1/retrain/', método GET
     global model
     if os.path.exists("data/Advertising_new.csv"):
